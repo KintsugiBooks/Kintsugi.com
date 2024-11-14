@@ -19,10 +19,10 @@
 
     <div class="product-container">
         <div class="product-image">
-            <img src="libro.webp" alt="Portada del libro">
+            <img id="product-image" src="Portada.JPG" alt="Portada del libro">
         </div>
         <div class="product-info">
-            <h2>EL ELEFANTE AZUL</h2>
+            <h2>Mokki, un brazo y mil sueños</h2>
             <p class="price">20,80 €</p>
 
             <div class="purchase-options">
@@ -87,6 +87,30 @@
                 alert("Por favor, selecciona un formato antes de añadir al carrito.");
             }
         });
+    </script>
+
+
+    <script>
+        // Array con las rutas de las imágenes
+        const images = ["Portada.JPG", "Contraportada.JPG"];
+        
+        // Seleccionar el elemento de imagen por su id
+        const imageElement = document.getElementById("product-image");
+        
+        // Variable para el índice de la imagen actual
+        let currentIndex = 0;
+        
+        // Función para cambiar la imagen
+        function changeImage() {
+            // Actualizar la ruta de la imagen
+            imageElement.src = images[currentIndex];
+            
+            // Actualizar el índice, y resetear si llega al final del array
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+        
+        // Cambiar imagen cada 3 segundos (3000 ms)
+        setInterval(changeImage, 3000);
     </script>
 </body>
 </html>
