@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kintsugi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="product.html">Productos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="product-container">
+        <div class="product-image">
+            <img src="libro.webp" alt="Portada del libro">
+        </div>
+        <div class="product-info">
+            <h2>EL ELEFANTE AZUL</h2>
+            <p class="price">20,80 €</p>
+
+            <div class="purchase-options">
+                <p><strong>Formatos disponibles:</strong></p>
+                <button class="btn" data-format="Tapa blanda - 20,80 €">Tapa blanda - 20,80 €</button>
+                <button class="btn" data-format="eBook - 12,34 €">eBook - 12,34 €</button>
+            </div>
+
+            <button class="add-to-cart">Añadir a la cesta</button>
+
+            <!-- Lugar para el mensaje de confirmación -->
+            <p class="confirmation-message" id="confirmation-message"></p>
+
+            <div class="delivery-info">
+                <p>Recíbelo mañana <strong>viernes 18 de octubre</strong></p>
+                <p><a href="#">Consulta la disponibilidad en nuestras librerías.</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-description">
+        <h3>Sinopsis</h3>
+        <p>Este es un libro inclusivo diseñado para niños de 3 años, protagonizado por un simpático elefante. Las ilustraciones y el lenguaje sencillo invitan a los niños a explorar el mundo desde una perspectiva inclusiva.</p>
+    </div>
+
+    <footer>
+        <p>Kintsugi Books &copy; 2024</p>
+    </footer>
+
+    <script>
+        // Variable para almacenar el formato seleccionado
+        let selectedFormat = null;
+
+        // Manejar el evento de clic en los botones de formato
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remover la clase 'active' de todos los botones
+                document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+
+                // Agregar la clase 'active' al botón clicado
+                this.classList.add('active');
+
+                // Guardar el formato seleccionado
+                selectedFormat = this.getAttribute('data-format');
+            });
+        });
+
+        // Manejar el evento de clic en el botón de "Añadir a la cesta"
+        document.querySelector('.add-to-cart').addEventListener('click', function() {
+            // Comprobar si hay un formato seleccionado
+            if (selectedFormat) {
+                // Cambia el estilo del botón a "presionado"
+                this.classList.add('button-pressed');
+                this.textContent = "Añadido al carrito";
+
+                // Mostrar el mensaje de confirmación
+                const confirmationMessage = document.getElementById('confirmation-message');
+                confirmationMessage.textContent = `¡${selectedFormat} ha sido añadido al carrito!`;
+                confirmationMessage.style.display = 'block'; // Hacer visible el mensaje
+            } else {
+                // Si no se selecciona formato, muestra un aviso
+                alert("Por favor, selecciona un formato antes de añadir al carrito.");
+            }
+        });
+    </script>
+</body>
+</html>
